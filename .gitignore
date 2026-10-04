@@ -1,0 +1,10 @@
+*.exe
+*.out
+*.o
+route-finder
+tests/run-tests
+.vscode/
+.idea/
+__pycache__/
+.venv/
+_private/
