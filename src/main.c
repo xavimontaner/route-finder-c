@@ -1,3 +1,5 @@
+#define _POSIX_C_SOURCE 200809L
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -22,7 +24,7 @@ static void get_location(House* houses, Place* places, double* lat, double* lon)
         char name[150], norm[150];
         int  num;
         printf("Enter street name (e.g. \"Carrer de Roc Boronat\"): ");
-        fgets(name, sizeof(name), stdin);
+        if (!fgets(name, sizeof(name), stdin)) return;
         name[strcspn(name, "\r\n")] = 0;
         normalize_name(norm, name);
 
@@ -63,7 +65,7 @@ static void get_location(House* houses, Place* places, double* lat, double* lon)
         //user wants to search by place name
         char name[200];
         printf("Enter place name: ");
-        fgets(name, sizeof(name), stdin);
+        if (!fgets(name, sizeof(name), stdin)) return;
         name[strcspn(name, "\r\n")] = 0;
 
         //find the place, if not found try similar names
@@ -261,3 +263,4 @@ int main(void) {
     free_streets(streets);
     return 0;
 }
+
